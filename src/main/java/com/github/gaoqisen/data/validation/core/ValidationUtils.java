@@ -82,7 +82,10 @@ public class ValidationUtils {
         }
 
         ValidationResult validationResult = new ValidationResult();
-        validationResult.setFieldCases(fieldRequiredErr);
+        if(fieldRequiredErr.size() > 0) {
+            validationResult.setFieldCases(fieldRequiredErr);
+            validationResult.setSuccess(false);
+        }
         Field[] declaredFields = aClass.getDeclaredFields();
         TypeHandlerContext context = TypeHandlerContext.build(validationResult, validationHandlerMap, validationMeta);
         for (Field field : declaredFields) {

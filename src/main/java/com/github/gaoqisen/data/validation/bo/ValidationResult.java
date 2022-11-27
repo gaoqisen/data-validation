@@ -26,12 +26,14 @@ public class ValidationResult {
         return result;
     }
 
-    public List<String> getFieldCases() {
-        return fieldCases;
-    }
-
-    public void setFieldCases(List<String> fieldCases) {
-        this.fieldCases = fieldCases;
+    @Override
+    public String toString() {
+        return "ValidationResult{" +
+                "success=" + success +
+                ", failMessage='" + failMessage + '\'' +
+                ", code='" + code + '\'' +
+                ", fieldCases=" + fieldCases +
+                '}';
     }
 
     public Boolean getSuccess() {
@@ -58,12 +60,11 @@ public class ValidationResult {
         this.code = code;
     }
 
-    @Override
-    public String toString() {
-        return "ValidationResult{" +
-                "success=" + success +
-                ", failMessage='" + failMessage + '\'' +
-                ", code='" + code + '\'' +
-                '}';
+    public List<String> getFieldCases() {
+        return fieldCases;
+    }
+
+    public void setFieldCases(List<String> fieldCases) {
+        this.fieldCases = fieldCases;
     }
 }

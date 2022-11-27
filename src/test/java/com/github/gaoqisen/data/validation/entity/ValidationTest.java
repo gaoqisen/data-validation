@@ -34,9 +34,9 @@ public class ValidationTest {
         userEntity.setAddress(Collections.singletonList(addressEntity));
 
         ValidationResult validate = ValidationUtils.validate(userEntity);
-        assert validate != null;
-        Assert.assertTrue(validate.getSuccess());
         System.out.println(validate.toString());
+
+        Assert.assertTrue(validate.getSuccess());
     }
 
 }
