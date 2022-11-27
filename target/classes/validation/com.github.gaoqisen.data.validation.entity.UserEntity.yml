@@ -1,0 +1,40 @@
+name:
+  maxLength: 10
+  minLength: 2
+  reqex: '[\u4e00-\u9fa5]'
+  desc: 名称
+  required: true
+age:
+  maxLength: 10
+  minLength: 2
+  reqex: '[\u4e00-\u9fa5]'
+  desc: 年龄
+  required: true
+address:
+  maxLength: 10
+  minLength: 2
+  reqex: '[\u4e00-\u9fa5]'
+  desc: 年龄
+  required: true
+  children:
+#    proviece:
+#      maxLength: 10
+#      minLength: 2
+#      reqex: '[\u4e00-\u9fa5]'
+#      type: String
+#      desc: 省
+#      required: true
+#    city:
+#      maxLength: 10
+#      minLength: 2
+#      reqex: '[\u4e00-\u9fa5]'
+#      type: String
+#      desc: 市
+#      required: true
+#    area:
+#      maxLength: 10
+#      minLength: 2
+#      reqex: '[\u4e00-\u9fa5]'
+#      type: String
+#      desc: 区
+#      required: true
