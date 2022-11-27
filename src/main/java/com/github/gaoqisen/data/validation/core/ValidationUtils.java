@@ -6,7 +6,11 @@ import com.github.gaoqisen.data.validation.bo.ValidationMeta;
 import com.github.gaoqisen.data.validation.core.handler.LengthValidationHandler;
 import org.springframework.util.StringUtils;
 
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class ValidationUtils {
@@ -55,14 +59,20 @@ public class ValidationUtils {
                 continue;
             }
             if(value.getRequired()) {
-                Field field = null;
+                Object invoke = null;
                 try {
-                     field = aClass.getField(entry.getKey());
-                } catch (NoSuchFieldException e) {
+                    PropertyDescriptor propertyDescriptor = new PropertyDescriptor(entry.getKey(), aClass);
+                    Method readMethod = propertyDescriptor.getReadMethod();
+                    invoke = readMethod.invoke(obj);
+                } catch (IntrospectionException e) {
                     throw new RuntimeException("validation get object field error");
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
                 }
-                if(!StringUtils.hasLength(field.getName())) {
-                    String requiredErr = String.format(validationMeta.getRequired(), entry.getKey());
+                if(invoke == null) {
+                    String requiredErr = String.format(validationMeta.getRequired(), entry.getValue().getDesc());
                     if(validationMeta.getSkip()) {
                         return ValidationResult.buildFail(requiredErr);
                     }

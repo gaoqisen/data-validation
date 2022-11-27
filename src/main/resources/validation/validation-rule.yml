@@ -1,5 +1,5 @@
-maxLength: s%超过最大长度
-minLength: s%太小
-reqex: s%校验规则
-type: s%类型错误
-required: s%不能为空
+maxLength: '%s超过最大长度'
+minLength: '%s太小'
+reqex: '%s校验规则'
+type: '%s类型错误'
+required: '%s不能为空'
