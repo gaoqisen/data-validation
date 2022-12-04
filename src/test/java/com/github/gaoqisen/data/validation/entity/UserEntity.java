@@ -4,6 +4,9 @@ import java.util.List;
 
 public class UserEntity {
 
+    private AddressEntity addressDetail;
+
+
     private String name;
 
     private Integer age;
@@ -11,6 +14,15 @@ public class UserEntity {
     private List<String> nick;
 
     private List<AddressEntity> address;
+
+
+    public AddressEntity getAddressDetail() {
+        return addressDetail;
+    }
+
+    public void setAddressDetail(AddressEntity addressDetail) {
+        this.addressDetail = addressDetail;
+    }
 
     public String getName() {
         return name;
@@ -43,4 +55,12 @@ public class UserEntity {
     public void setAddress(List<AddressEntity> address) {
         this.address = address;
     }
+
+    public static void main(String[] args) {
+        int a = 1;
+        System.out.println(String.class.getClassLoader());
+        System.out.println(Integer.class.getClassLoader());
+        System.out.println(AddressEntity.class.getClassLoader());
+    }
+
 }

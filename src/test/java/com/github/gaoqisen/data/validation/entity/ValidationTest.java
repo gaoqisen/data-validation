@@ -1,9 +1,6 @@
 package com.github.gaoqisen.data.validation.entity;
 
-import com.github.gaoqisen.data.validation.bo.ValidationResult;
-import com.github.gaoqisen.data.validation.config.DataValidationConfig;
 import com.github.gaoqisen.data.validation.core.ValidationUtils;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +13,7 @@ public class ValidationTest {
 
     @Before
     public void init() throws IOException {
-        DataValidationConfig dataValidationConfig = new DataValidationConfig();
-        dataValidationConfig.loadYmlParam();
+        ValidationUtils.loadYmlParam();
     }
 
     @Test
@@ -33,10 +29,17 @@ public class ValidationTest {
         userEntity.setNick(Collections.singletonList("test"));
         userEntity.setAddress(Collections.singletonList(addressEntity));
 
-        ValidationResult validate = ValidationUtils.validate(userEntity);
+        AddressEntity addressDetail = new AddressEntity();
+        addressDetail.setProvince("广东省");
+        addressDetail.setCity("深圳市");
+        addressDetail.setArea("固戍");
+        addressDetail.setTest(12);
+        userEntity.setAddressDetail(addressDetail);
+
+        ValidationUtils.ValidationResult validate = ValidationUtils.validate(userEntity);
         System.out.println(validate.toString());
 
-        Assert.assertTrue(validate.getSuccess());
+        Assert.assertNotNull(validate.getFieldCases());
     }
 
 }
